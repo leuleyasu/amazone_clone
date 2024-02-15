@@ -13,18 +13,22 @@ class CustomTextfield extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: 
-       Column(
-         children: [
-              TextFormField(
-             decoration:  InputDecoration(
-                 labelText: lable,
-                 border: const OutlineInputBorder()),
-           ),
-          
-         ],
-       )
+    return Column(
+      children: [
+           TextFormField(
+             controller: controller,
+          decoration:  InputDecoration(
+              labelText: lable,
+              border: const OutlineInputBorder()),
+              validator: (value) {
+      if (value == null || value.isEmpty) {
+        return "$lable is required";
+      }
+      return null;
+    },
+    ),
+       
+      ],
     );
   }
 }

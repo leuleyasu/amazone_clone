@@ -2,7 +2,6 @@
 
 import 'package:amazone_clone/feature/presentation/auth_screen.dart';
 import 'package:flutter/material.dart';
-
 Route<dynamic> onGenerateRouteSetting(RouteSettings routeSettings){
 
 switch (routeSettings.name) {
