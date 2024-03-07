@@ -7,7 +7,7 @@ prefs.setString("token", token);
 
 }
 
-Future <String> getToken() async{
+Future <String>? getToken() async{
 final SharedPreferences prefs = await SharedPreferences.getInstance();
 final String? authToken=  prefs.getString("token");
 if (authToken!=null) {

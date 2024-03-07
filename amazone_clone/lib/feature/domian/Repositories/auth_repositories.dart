@@ -11,6 +11,7 @@ import 'package:amazone_clone/utilis/show_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServiceRepositories {
   void signUpUser({required BuildContext context ,required String email, required String password, required String name})
@@ -46,6 +47,7 @@ showSnackbarCustom(context, e.toString());
       headers: {'Content-Type': 'application/json'},
     );
 
+    // ignore: use_build_context_synchronously
     errorHandling(
       context: context,
       response: response,
@@ -65,5 +67,32 @@ showSnackbarCustom(context, e.toString());
   }
 }
 
+void getUseData(BuildContext context) async{
+  String? token  = await getToken();
+  if (token==null) {
+   setToken('');
+  }
+
+ http.Response tokenres = await http.post(Uri.parse("$uri/api/verified"), headers:  {
+    'Content-Type': 'application/json',  
+    "x-auth-token":token!
+    },  
+  );
+  if (tokenres==true) {
+http.Response userResponse = await http.get(Uri.parse("$uri/"), headers:  {
+    'Content-Type': 'application/json',  
+    "x-auth-token":token
+    
+}
+
+  );
+
+  final userProvider =Provider.of<UserProvider>(context,listen:false);
+    userProvider.setUser(userResponse.body);
+  }
+ 
+
+}
+  
 
 }
