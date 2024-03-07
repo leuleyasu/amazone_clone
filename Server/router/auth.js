@@ -64,10 +64,8 @@ authRouter.post("api/verified", async (req, res) => {
   } catch (error) {}
 });
 
-authRouter.get("/", auth,async(req,res)=>{
+authRouter.get("/", auth, async (req, res) => {
   const user = await User.findByID(req.user);
-  res.json({...user._doc, token :req.token}); 
-
-
+  res.json({ ...user._doc, token: req.token });
 });
 module.exports = authRouter;

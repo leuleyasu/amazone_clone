@@ -11,10 +11,10 @@ import 'package:amazone_clone/utilis/show_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthServiceRepositories {
-  void signUpUser({required BuildContext context ,required String email, required String password, required String name})
+  void signUpUser({required BuildContext context ,required String email, 
+  required String password, required String name})
 async{
 
 try {

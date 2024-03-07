@@ -1,5 +1,6 @@
 import 'package:amazone_clone/config/route.dart';
 import 'package:amazone_clone/constanant.dart';
+import 'package:amazone_clone/feature/domian/Repositories/auth_repositories.dart';
 import 'package:amazone_clone/feature/presentation/BottomBar.dart';
 import 'package:amazone_clone/feature/presentation/auth_screen.dart';
 import 'package:amazone_clone/provider/login_provider.dart';
@@ -10,8 +11,23 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+
+class _MyAppState extends State<MyApp> {
+  AuthServiceRepositories authService =AuthServiceRepositories();
+  UserProvider userprovider= UserProvider();
+  @override
+  void initState() {
+    authService.getUseData(context);
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -32,7 +48,7 @@ class MyApp extends StatelessWidget {
                 iconTheme: IconThemeData(
                   color: Colors.black,
                 ))),
-        home: const BottomBar(),
+        home:userprovider.user.token.isNotEmpty? const  BottomBar(): const AuthScreen(),
         onGenerateRoute: (settings) {
           print(settings);
           return onGenerateRouteSetting(settings);
