@@ -6,6 +6,7 @@ import 'package:amazone_clone/feature/presentation/auth_screen.dart';
 import 'package:amazone_clone/provider/login_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
 
 void main() {
   runApp(const MyApp());
@@ -48,8 +49,8 @@ class _MyAppState extends State<MyApp> {
                 iconTheme: IconThemeData(
                   color: Colors.black,
                 ))),
-        home:userprovider.user.token.isNotEmpty? const  BottomBar(): const AuthScreen(),
-        onGenerateRoute: (settings) {
+        home:   userprovider.user.token.isNotEmpty? const  BottomBar(): const AuthScreen()
+,        onGenerateRoute: (settings) {
           print(settings);
           return onGenerateRouteSetting(settings);
         }

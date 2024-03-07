@@ -1,5 +1,6 @@
 import 'package:amazone_clone/feature/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
 
 class BottomBar extends StatefulWidget {
   const BottomBar({super.key});
@@ -46,7 +47,11 @@ print(selectedindex);
         label: ''
         
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_outlined)
+        BottomNavigationBarItem(icon:
+        badges.Badge(
+        badgeContent: Text("2", style: TextStyle(color: 
+        Colors.white),),
+          child: Icon(Icons.shopping_cart_outlined))
         ,
         label: ''),
      
