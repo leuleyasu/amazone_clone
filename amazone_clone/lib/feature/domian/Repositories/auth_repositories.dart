@@ -84,15 +84,24 @@ class AuthServiceRepositories {
     }
 
     http.Response tokenres = await http.post(
+      
       Uri.parse("$uri/api/verified"),
-      headers: {'Content-Type': 'application/json', "x-auth-token": token!},
-    );
-    if (tokenres == true) {
+      headers: {'Content-Type': 'application/json',
+       "x-auth-token": token!},
+    ); 
+    try {
+          if (tokenres == true) {
       http.Response userResponse = await http.get(Uri.parse("$uri/"),
           headers: {'Content-Type': 'application/json', "x-auth-token": token});
 
       final userProvider = Provider.of<UserProvider>(context, listen: false);
       userProvider.setUser(userResponse.body);
     }
+    } catch (e) {
+        showSnackbarCustom(context, e.toString()) ;
+
+    }
+
+  
   }
 }

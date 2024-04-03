@@ -49,4 +49,6 @@ class User {
   String toString() {
     return 'User{id: $id, name: $name, password: $password, email: $email, address: $address, type: $type, token: $token}';
   }
+
+  
 }
